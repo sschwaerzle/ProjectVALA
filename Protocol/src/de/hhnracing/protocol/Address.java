@@ -1,14 +1,16 @@
 package de.hhnracing.protocol;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
     private String phoneNumber;
     private String postalCode;
 
-    private String country;
-    private String town;
-    private String street;
-    private String streetNumber;
+    private final String country;
+    private final String town;
+    private final String street;
+    private final String streetNumber;
 
     Address(String phoneNumber, String postalCode, String country, String town, String street, String streetNumber) {
         this.phoneNumber = phoneNumber;
@@ -16,30 +18,6 @@ public class Address {
         this.country = country;
         this.town = town;
         this.street = street;
-        this.streetNumber = streetNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setStreetNumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
 
