@@ -1,6 +1,8 @@
 package de.hhnracing.client;
 
-import com.sun.xml.internal.ws.api.message.Packet;
+import de.hhnracing.protocol.Packet;
+import de.hhnracing.protocol.RequestPacket;
+import de.hhnracing.protocol.ResponsePacket;
 import javafx.application.Platform;
 
 import java.io.IOException;
@@ -33,8 +35,8 @@ public class ClientThread extends Thread {
     private final String host;
     private final int port;
 
-    private final Queue<Packet> outgoingPackets = new LinkedList<>();
-    private final Queue<Packet> incomingPackets = new LinkedList<>();
+    private final Queue<RequestPacket> outgoingPackets = new LinkedList<>();
+    private final Queue<ResponsePacket> incomingPackets = new LinkedList<>();
 
     private Socket server;
 
@@ -89,7 +91,7 @@ public class ClientThread extends Thread {
         receiverThread = new Thread(() -> {
             while (!isInterrupted()){
                 try {
-                    incomingPackets.add((Packet) in.readObject());
+                    incomingPackets.add((ResponsePacket) in.readObject());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
@@ -99,7 +101,7 @@ public class ClientThread extends Thread {
         });
     }
 
-    public void sendPacket(Packet p){
+    public void sendPacket(RequestPacket p){
         outgoingPackets.add(p);
     }
 
