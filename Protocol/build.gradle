@@ -9,6 +9,11 @@ repositories {
     mavenCentral()
 }
 
+def libdir = new File(project.buildDir, "lib")
+if( !libdir.exists() ) {
+    libdir.mkdir()
+}
+
 tasks.withType(Jar) {
     destinationDir = file("../lib")
 }
