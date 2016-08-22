@@ -1,0 +1,5 @@
+rootProject.name = 'ProjectVALA'
+include 'Client'
+include 'Server'
+include 'Protocol'
+

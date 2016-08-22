@@ -1,1 +1,3 @@
 .idea
+.gradle
+# *.iml - covered by .idea
